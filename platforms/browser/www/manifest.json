@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "encuesta",
+  "short_name": "encuesta",
+  "version": "com.encuesta.blitz",
+  "description": "encuesta",
+  "icons": [],
+  "orientation": "portrait",
+  "start_url": "index.html"
+}

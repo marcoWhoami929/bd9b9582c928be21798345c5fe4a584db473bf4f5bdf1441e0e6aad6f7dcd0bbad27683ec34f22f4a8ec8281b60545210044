@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/plantilla.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+
+
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+ 
+  </head>
+        
+    <title>BLITZ-ENCUESTA</title>
+  </head>
+  <body onload="initialize()">
+    <div class="container col-lg-12" >
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 divCabecera">
+          <center><img src="img/logo-blanco.png" alt="" id="imgCabecera"></center>
+        </div>
+          
+        <div class="col-lg-12 col-md-12 col-sm-12" id="contenedorInputs">
+          <a href="javascript: history.go(-1)" class="button button-clear"><i class="fas fa-arrow-circle-left fa-3x"></i></a>  
+          <br>
+
+          <form action="" id="formInputs">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>*Nombre de taller:</strong></span>
+              <input type="text" class="form-control" id="nombreTaller" name="nombreTaller" placeholder="Ingresar Nombre del Taller">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>*Nombre Cliente:</strong></span>
+              <input type="text" class="form-control" id="nombreCliente" name="nombreCliente" placeholder="Ingresar Nombre">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>*Dirección</strong></span>
+               <small>Nota:Ingresar la dirección y elegir en el menu desplegable la dirección correcta, automaticamente se llenarán los campos faltantes.</small>
+               <input class="form-control " id="autocomplete" placeholder="Ingrese su dirección" type="text">
+              <input class="form-control" id="route" placeholder="Calle">
+              <input class="form-control" id="street_number" placeholder="Número Interior">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>*Colonia:</strong></span>
+              <input class="form-control" id="sublocality_level_1" placeholder="Colonia">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>*Estado:</strong></span>
+              <input class="form-control" id="administrative_area_level_1" placeholder="Estado">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>*Ciudad:</strong></span>
+              <input class="form-control" id="locality" placeholder="Ciudad">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <span><strong>CP:</strong></span>
+              <input class="form-control" id="postal_code" placeholder="Código Postal">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>Teléfono:</strong></span>
+              <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresar Teléfono">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>Celular:</strong></span>
+              <input type="tel" class="form-control" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" id="celular" name="celular" placeholder="Ingresar Celular">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>Correo Electrónico:</strong></span>
+              <input type="email" class="form-control" id="correoClient" name="correoClient" placeholder="Ingresar Correo">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>Facebook:</strong></span>
+              <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Ingrese pagina de FaceBook">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>*Reparaciones al mes:</strong></span>
+              <select class="form-control" name="reparacionesMensuales" id="reparacionesMensuales">
+                <option value="1-20">De 1 - 20</option>
+                <option value="21-40">De 21 - 40</option>
+                <option value="+40">Mas de 40</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>*Igualados por semana:</strong></span>
+              <select class="form-control" name="igualadosSemanales" id="igualadosSemanales">
+                <option value="1-3">De 1 - 3</option>
+                <option value="4-7">De 4 - 7</option>
+                <option value="+7">Mas de 7</option>
+              </select>
+
+              <span><strong>*Calidad del Igualado:</strong></span>
+              <select class="form-control" name="calidadIgualado" id="calidadIgualado">
+                <option value="MALA">Mala</option>
+                <option value="REGULAR">Regular</option>
+                <option value="BUENA">Buena</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>*M2 (Área HYP):</strong></span>
+              <select  class="form-control" name="m2Area" id="m2Area">
+                <option value="1-50">De 1 - 50</option>
+                <option value="51-80">De 51 - 80</option>
+                <option value="+80">Mas de 80</option>
+              </select>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+              <span><strong>*No. de Trabajadores:</strong></span>
+              <input type="number" class="form-control" id="noTrabajadores" name="noTrabajadores" placeholder="Ingresar No. de Trabajadores">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+              <span><strong>*Horario (L-V):</strong></span>
+              <input class="form-control col-lg-3" id="horaInicio" name="horaInicio" placeholder="Hora de apertura" />
+              <input class="form-control col-lg-3" id="horaFin" name="horaFin" placeholder="Hora de cierre" style="margin-top: 15px" />
+           
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+
+              <span ><strong>*Horario (SAB):</strong></span>
+              
+              <input class="form-control col-lg-3" id="horaInicioSab" name="horaInicioSab" placeholder="Hora de apertura" style="margin-top: 5px"/>
+              <input class="form-control col-lg-3" id="horaFinSab" name="horaFinSab" placeholder="Hora de cierre" style="margin-top: 15px"/>
+            </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                   <span><strong>*¿Satisfecho con el actual Proveedor?:</strong></span>
+                   <select class="form-control" name="satisfecho" id="satisfecho">
+                     <option value="SI">Si</option>
+                     <option value="NO">No</option>
+                   </select>
+                   <span><strong>¿Por que?:</strong></span>
+                   <textarea rows="2" cols="50" class="form-control" id="porQue" name="porQue" placeholder="Especifique"></textarea>  
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                   <span><strong>Proveedor de Pinturas y Complementos:</strong></span>
+                   <select name="proveedores" id="proveedores" class="form-control" onchange="proveedorChange(this)">
+                     <option value="otro">OTRO(especificar)</option>
+                   </select>
+                   <input type="text" class="form-control" id="proveedor" name="proveedor" placeholder="Ingresar Nombre de su Proveedor" style="display: none">
+                   
+                    <span><strong>Domicilio/Referencia</strong></span>
+                   <input type="text" class="form-control" id="domicilioReferencia" name="domicilioReferencia" placeholder="Ingresar Domicilio de su Proveedor">
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                  <span><strong>¿Que productos le falta incluir a tu Actual Proveedor en su catálogo?:</strong></span>
+                  <textarea rows="2" cols="50" class="form-control" id="productosAddProveedor" name="productosAddProveedor" placeholder="Especifique"></textarea>  
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                  <span><strong>¿Que le hace falta a tu Actual Proveedor para Mejorar?:</strong></span>
+                  <textarea rows="2" cols="50" class="form-control" id="comentariosMejora" name="comentariosMejora" placeholder="Especifique"></textarea>  
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                   <span><strong>*Forma de Pago:</strong></span>
+                   <select class="form-control" name="formaPago" id="formaPago" onchange="pagoOnChange(this)">
+                     <option value="CONTADO">Contado</option>
+                     <option value="CREDITO">Crédito</option>
+                   </select>  
+                </div>
+                <div id="pagoCredito" style="display: none">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <span><strong>Monto de Línea de Crédito:</strong></span><br>
+                        <input class="form-control" type="text" id="lineaCredito" name="lineaCredito"  />
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <span><strong>Tiempo de Crédito:</strong></span><br>
+                        <input class="form-control" type="text" id="tiempoCredito" name="tiempoCredito"  />
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                        <span><strong>Antiguedad Con El Taller:</strong></span><br>
+                        <input class="form-control" type="text" id="antiguedadTaller" name="antiguedadTaller"  />
+                      </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 baseColor">
+                  <span><strong>Linea de Base Color:</strong></span><br>
+                  <input class="form-control" type="text" id="lineaBaseColor" name="lineaBaseColor" value="" data-role="tagsinput" />
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 esmalte">
+                  <span><strong>Marcas de Esmalte:</strong></span><br>
+                  <input class="form-control" type="text" id="esmaltes" name="esmaltes" value="" data-role="tagsinput" />
+                </div>
+
+                 <div class="col-lg-6 col-md-6 col-sm-6 transparente">
+                  <span><strong>Transparente:</strong></span><br>
+                  <input class="form-control" type="text" id="transparentes" name="transparentes" value="" data-role="tagsinput" />
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 pistola">
+                  <span><strong>Marcas de Pistolas:</strong></span><br>
+                  <input class="form-control" type="text" id="pistolas" name="pistolas" value="" data-role="tagsinput" />
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 lija">
+                  <span><strong>Marcas de Lijas:</strong></span><br>
+                  <input class="form-control" type="text" id="lijas" name="lijas" value="" data-role="tagsinput" />
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 masking">
+                  <span><strong>Marcas de Masking:</strong></span><br>
+                  <input class="form-control" type="text" id="maskings" name="maskings" value="" data-role="tagsinput" />
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                   <span><strong>¿Cuanto Inviertes Semanalmente en PYC?:</strong></span>
+                  <select class="form-control" name="inversionSemanal" id="inversionSemanal">
+                    <option value="1000">$ 1,000</option>
+                    <option value="2000">$ 2,000</option>
+                    <option value="3000">$ 3,000</option>
+                    <option value="4000">$ 4,000</option>
+                    <option value="5000">$ 5,000</option>
+                    <option value="+5000">Mas de $5,0000</option>
+                  </select>
+                </div>
+
+            
+          </div>
+          <br>
+          <br><br>
+          <div class="col-lg-6 col-md-6 col-sm-6" style="margin-bottom: 100px;margin-top: 10px;">
+            <button type="button" class="btn btn-success buttons" id="guardarDatos" name="guardarDatos">Guardar Datos</button>
+          </div> 
+
+        </div>
+      </div>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_dlGznsov-uJDQUmmsHIR_vsA103iiLc&signed_in=true&libraries=places"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript" src="js/script.js"></script>
+      <script type="text/javascript" src="js/plantilla.js"></script>
+      <script type="text/javascript" src="js/auth.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+      <script src="js/bootstrap-tagsinput.min.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+      
+
+    
+        
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+        <script>
+        $('#horaInicio').timepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'HH:MM:ss',
+            mode: '24hr'
+        });
+        // $("#horaInicio").on("focus",function(){
+        //   var horaInicio = $("#horaInicio").val();
+        //   alert(horaInicio);
+        // });
+        $('#horaFin').timepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'HH:MM:ss',
+            mode: '24hr'
+        });
+    </script>
+    <script>
+        $('#horaInicioSab').timepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'HH:MM:ss',
+            mode: '24hr'
+        });
+        $('#horaFinSab').timepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'HH:MM:ss',
+            mode: '24hr'
+        });
+    </script>
+        <script type="text/javascript">
+          /**
+           * FUNCION PARA EL INPUT PARA LINEA DE BASE COLOR
+           */
+          $(function() {
+            $('#lineaBaseColor').on('change', function(event) {
+              var $element = $(event.target),
+                $container = $element.closest('.baseColor');
+
+              if (!$element.data('tagsinput'))
+                return;
+
+              var val = $element.val();
+              if (val === null)
+                val = "null";
+              var datos = JSON.stringify($element.tagsinput('items'));
+              localStorage.setItem("baseColor",datos);
+            }).trigger('change');
+          });
+
+          /**
+           * FUNCION PARA EL INPUT DE MARCAS DE ESMALTE
+           */
+          $(function() {
+            $('#esmaltes').on('change', function(event) {
+              var $element = $(event.target),
+                $container = $element.closest('.esmalte');
+
+              if (!$element.data('tagsinput'))
+                return;
+
+              var val = $element.val();
+              if (val === null)
+                val = "null";
+              var esmaltes = JSON.stringify($element.tagsinput('items'));
+              localStorage.setItem("esmalte",esmaltes);
+            }).trigger('change');
+          });
+
+          /**
+           * FUNCION PARA EL INPUT DE MARCAS DE TRASPARENTE
+           */
+          $(function() {
+            $('#transparentes').on('change', function(event) {
+              var $element = $(event.target),
+                $container = $element.closest('.transparente');
+
+              if (!$element.data('tagsinput'))
+                return;
+
+              var val = $element.val();
+              if (val === null)
+                val = "null";
+              var transparentes = JSON.stringify($element.tagsinput('items'));
+              localStorage.setItem("transparente",transparentes);
+            }).trigger('change');
+          });
+
+          /**
+           * FUNCION PARA EL INPUT PARA MARCA DE PISTOLAS
+           */
+          $(function() {
+            $('#pistolas').on('change', function(event) {
+              var $element = $(event.target),
+                $container = $element.closest('.pistola');
+
+              if (!$element.data('tagsinput'))
+                return;
+
+              var val = $element.val();
+              if (val === null)
+                val = "null";
+              var pistolas = JSON.stringify($element.tagsinput('items'));
+              localStorage.setItem("pistola",pistolas);
+            }).trigger('change');
+          });
+
+          /**
+           * FUNCION PARA EL INPUT PARA MARCAS DE LIJAS
+           */
+          $(function() {
+            $('#lijas').on('change', function(event) {
+              var $element = $(event.target),
+                $container = $element.closest('.lija');
+
+              if (!$element.data('tagsinput'))
+                return;
+
+              var val = $element.val();
+              if (val === null)
+                val = "null";
+              var lijas = JSON.stringify($element.tagsinput('items'));
+              localStorage.setItem("lija",lijas);
+            }).trigger('change');
+          });
+
+          /**
+           * FUNCION PARA EL INPUT MARCAS DE MASKINGS
+           */
+           $(function() {
+            $('#maskings').on('change', function(event) {
+              var $element = $(event.target),
+                $container = $element.closest('.masking');
+
+              if (!$element.data('tagsinput'))
+                return;
+
+              var val = $element.val();
+              if (val === null)
+                val = "null";
+              var maskings = JSON.stringify($element.tagsinput('items'));
+              localStorage.setItem("masking",maskings);
+            }).trigger('change');
+          });
+
+          $(function() {
+
+            var array = [];
+            var arraySelect = [];
+
+            $("#formInputs input").each(function(){
+                 var names = $(this).attr("id");
+                 array.push(names);
+              });
+
+            localStorage.setItem("arrayInputs",JSON.stringify(array));
+
+            for (var i = 0; i < array.length; i++) {
+
+              var local = localStorage.getItem(array[i]);
+
+              if (local === null ) {
+
+              }else{
+                $("#"+array[i]+"").val(local);
+              }
+                 
+            }
+            $('#contenedorInputs').on('change', '#formInputs input', function(){
+              //alert($(this).val());
+              var valor = $(this).val();
+              var idInput = $(this).attr("id");
+              localStorage.setItem(idInput,valor);
+            });
+
+            $("#formInputs select").each(function(){
+                 var nameSelect = $(this).attr("id");
+                 arraySelect.push(nameSelect);
+              });
+            localStorage.setItem("arraySelects",JSON.stringify(arraySelect));
+            for (var i = 0; i < arraySelect.length; i++) {
+
+              var localSelect = localStorage.getItem(arraySelect[i]);
+
+              if (localSelect === null ) {
+
+              }else{
+                $("#"+arraySelect[i]+"").val(localSelect);
+              }
+                 
+            }
+
+            $('#contenedorInputs').on('change keyup paste click', '#formInputs select', function(){
+              //alert($(this).val());
+              var valor = $(this).val();
+              var idInput = $(this).attr("id");
+              localStorage.setItem(idInput,valor);
+            });
+
+          })
+         
+
+          $(document).ready(function(){
+
+            var json = localStorage.listadoProveedores;
+            var types = JSON.parse(json);
+
+            for (x = 0; x < types.length; x++) {
+
+             if (types[x].proveedorPinturas == "ALVAMEX") {
+
+                  var seleccionado = "selected";
+             }else{
+
+                  var seleccionado = "";
+             }
+
+             var div2 = `<option value="`+types[x].proveedorPinturas+`" `+seleccionado+`>`+types[x].proveedorPinturas+`</option>`;
+             $("#proveedores").append(div2);
+            }
+           
+
+            $("#contenedorInputs").click(function(){
+                $("#formInputs input").each(function(){
+                 var valor = $(this).val();
+                 var idInput = $(this).attr("id");
+                 localStorage.setItem(idInput,valor);
+              });
+              var geocoder = new google.maps.Geocoder;
+             geocodeLatLng(geocoder);
+                 
+            })
+
+
+              function geocodeLatLng(geocoder) {
+
+              var latlng = {lat: parseFloat(localStorage.getItem("latitud")), lng: parseFloat(localStorage.getItem("longitud"))};
+              geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                  if (results[0]) {
+
+                   var direccion = localStorage.getItem("autocomplete");
+
+                   if (direccion == "") {
+
+                    localStorage.setItem("autocomplete",results[0].formatted_address);
+                    $("#autocomplete").val(results[0].formatted_address);
+
+                   }else{
+
+
+                   }
+                   
+                  } else {
+                    //window.alert('No results found');
+                  }
+                } else {
+                  console.log('Geocoder failed due to: ' + status);
+                  //window.alert();
+                }
+              });
+            }
+          })
+
+          $(document).on('change', '#proveedores', function(event) {
+
+               if ($("#proveedores option:selected").text() == "OTRO(especificar)") {
+
+               }else{
+
+                   $('#proveedor').val($("#proveedores option:selected").text());
+
+
+               }
+              
+          });
+                              
+        </script>
+    </body>
+</html>
