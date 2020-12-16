@@ -164,6 +164,16 @@
                     <span><strong>Domicilio/Referencia</strong></span>
                    <input type="text" class="form-control" id="domicilioReferencia" name="domicilioReferencia" placeholder="Ingresar Domicilio de su Proveedor">
                 </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                  <span><strong>Proveedor de Pinturas y Complementos 2(opcional):</strong></span>
+                  <select name="proveedores2" id="proveedores2" class="form-control" onchange="proveedorChange2(this)">
+                    <option value="otro">OTRO(especificar)</option>
+                  </select>
+                  <input type="text" class="form-control" id="proveedor2" name="proveedor2" placeholder="Ingresar Nombre de su Proveedor" style="display: none">
+                  
+                   <span><strong>Domicilio/Referencia 2</strong></span>
+                  <input type="text" class="form-control" id="domicilioReferencia2" name="domicilioReferencia2" placeholder="Ingresar Domicilio de su Proveedor">
+               </div>
                 
                 <div class="col-lg-6 col-md-6 col-sm-6 ">
                   <span><strong>¿Que productos le falta incluir a tu Actual Proveedor en su catálogo?:</strong></span>
@@ -248,7 +258,7 @@
 
         </div>
       </div>
-       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_dlGznsov-uJDQUmmsHIR_vsA103iiLc&signed_in=true&libraries=places"></script>
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Ow27ztKwFY0_CyX5FXXfK6PV87gJsPQ&signed_in=true&libraries=places"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script type="text/javascript" src="js/index.js"></script>
       <script type="text/javascript" src="js/script.js"></script>
@@ -484,7 +494,23 @@
 
              var div2 = `<option value="`+types[x].proveedorPinturas+`" `+seleccionado+`>`+types[x].proveedorPinturas+`</option>`;
              $("#proveedores").append(div2);
+            
             }
+            for (x = 0; x < types.length; x++) {
+
+              if (types[x].proveedorPinturas == "ALVAMEX") {
+
+                  var seleccionado = "selected";
+              }else{
+
+                  var seleccionado = "";
+              }
+
+              var div3 = `<option value="`+types[x].proveedorPinturas+`" `+seleccionado+`>`+types[x].proveedorPinturas+`</option>`;
+              $("#proveedores2").append(div3);
+
+              }
+           
            
 
             $("#contenedorInputs").click(function(){
@@ -541,6 +567,19 @@
                }
               
           });
+
+          $(document).on('change', '#proveedores2', function(event) {
+
+            if ($("#proveedores2 option:selected").text() == "OTRO(especificar)") {
+
+            }else{
+
+                $('#proveedor2').val($("#proveedores2 option:selected").text());
+
+
+            }
+
+            });
                               
         </script>
     </body>

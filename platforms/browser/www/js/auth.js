@@ -521,6 +521,11 @@ $(document).ready(function() {
 
                             var proveedor = $("#proveedor").val();
                             var domicilioReferencia = $("#domicilioReferencia").val();
+
+                            var proveedor2 = $("#proveedor2").val();
+                            var domicilioReferencia2 = $("#domicilioReferencia2").val();
+
+
                             var formaPago = $("#formaPago").val();
 
                             var lineaCredito = $("#lineaCredito").val();
@@ -539,7 +544,7 @@ $(document).ready(function() {
 
                             var direccion = calle + "," + noInterior + "," + colonia + "," + estado + "," + ciudad + "," + cp;
 
-                            var dataString = "idCliente=" + idCliente + "&idEncuestaConsultado=" + idEncuestaConsultado + "&estado=" + estado + "&nameTaller=" + nameTaller + "&nameCliente=" + nameCliente + "&telefono=" + telefono + "&celular=" + celular + "&email=" + email + "&facebook=" + facebook + "&reparacionesMensuales=" + reparacionesMensuales + "&igualadosSemanales=" + igualadosSemanales + "&calidadIgualado=" + calidadIgualado + "&m2Area=" + m2Area + "&noTrabajadores=" + noTrabajadores + "&horarioLV=" + horarioLV + "&horarioSab=" + horarioSab + "&satisfecho=" + satisfecho + "&porQue=" + porQue + "&direccion=" + direccion + "&proveedor=" + proveedor + "&domicilioReferencia=" + domicilioReferencia + "&formaPago=" + formaPago + "&lineaCredito=" + lineaCredito + "&tiempoCredito=" + tiempoCredito + "&antiguedadTaller=" + antiguedadTaller + "&lineaBaseColor=" + lineaBaseColor + "&esmaltes=" + esmaltes + "&transparentes=" + transparentes + "&pistolas=" + pistolas + "&lijas=" + lijas + "&maskings=" + maskings + "&inversionSemanal=" + inversionSemanal + "&productosAddProveedor=" + productosAddProveedor + "&comentariosMejora=" + comentariosMejora + "&guardarDatosEncuesta=";
+                            var dataString = "idCliente=" + idCliente + "&idEncuestaConsultado=" + idEncuestaConsultado + "&estado=" + estado + "&nameTaller=" + nameTaller + "&nameCliente=" + nameCliente + "&telefono=" + telefono + "&celular=" + celular + "&email=" + email + "&facebook=" + facebook + "&reparacionesMensuales=" + reparacionesMensuales + "&igualadosSemanales=" + igualadosSemanales + "&calidadIgualado=" + calidadIgualado + "&m2Area=" + m2Area + "&noTrabajadores=" + noTrabajadores + "&horarioLV=" + horarioLV + "&horarioSab=" + horarioSab + "&satisfecho=" + satisfecho + "&porQue=" + porQue + "&direccion=" + direccion + "&proveedor=" + proveedor + "&domicilioReferencia=" + domicilioReferencia + "&proveedor2=" + proveedor2 + "&domicilioReferencia2=" + domicilioReferencia2 + "&formaPago=" + formaPago + "&lineaCredito=" + lineaCredito + "&tiempoCredito=" + tiempoCredito + "&antiguedadTaller=" + antiguedadTaller + "&lineaBaseColor=" + lineaBaseColor + "&esmaltes=" + esmaltes + "&transparentes=" + transparentes + "&pistolas=" + pistolas + "&lijas=" + lijas + "&maskings=" + maskings + "&inversionSemanal=" + inversionSemanal + "&productosAddProveedor=" + productosAddProveedor + "&comentariosMejora=" + comentariosMejora + "&guardarDatosEncuesta=";
                             if ($.trim(idCliente).length > 0 & $.trim(idEncuestaConsultado).length > 0 & $.trim(estado).length > 0 &$.trim(nameTaller).length > 0 & $.trim(nameCliente).length > 0 & $.trim(reparacionesMensuales).length > 0 & $.trim(igualadosSemanales).length > 0 & $.trim(calidadIgualado).length > 0 & $.trim(m2Area).length > 0 & $.trim(noTrabajadores).length > 0  & $.trim(satisfecho).length > 0 & $.trim(formaPago).length > 0  & $.trim(inversionSemanal).length > 0) {
                                 $.ajax({
                                     type: "POST",

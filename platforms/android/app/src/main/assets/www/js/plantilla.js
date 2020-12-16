@@ -78,3 +78,21 @@ function proveedorChange(sel){
 
 
 }
+function proveedorChange2(sel){
+
+	if (sel.value == "otro") {
+
+		seleccion = document.getElementById("proveedor2");
+		seleccion.value = ""
+		seleccion.style.display = "";
+
+	}else{
+
+		seleccion = document.getElementById("proveedor2");
+		seleccion.style.display = "none";
+
+
+	}
+
+
+}
