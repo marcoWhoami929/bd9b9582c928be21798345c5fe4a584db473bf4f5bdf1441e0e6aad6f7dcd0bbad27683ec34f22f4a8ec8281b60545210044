@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/plantilla.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+
+
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+ 
+  </head>
+        
+    <title>BLITZ-ENCUESTA</title>
+  </head>
+  <body>
+    <div class="container col-lg-12" >
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 divCabecera">
+            <center><img src="img/logo-blanco.png" alt="" id="imgCabecera"></center>
+          </div>
+          <div class="contenedorMapa" id="contenedorMapa">
+                <div  id="map"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px">
+                    <center>
+                      <button
+                        type="button"
+                        class="btn btn-success buttons "
+                        id="registrarNuevo"
+                      >
+                        <strong style="color: white">NUEVO</strong>
+                      </button>
+                    </center>
+                  </div>
+          </div>
+        </div>
+      </div>
+   
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript" src="js/plantilla.js"></script>
+      <script type="text/javascript" src="js/auth.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+      <script src="js/bootstrap-tagsinput.min.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Ow27ztKwFY0_CyX5FXXfK6PV87gJsPQ"></script>
+      
+      <script type="text/javascript">
+function initMap() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        zoom: 12,
+      center: new google.maps.LatLng(localStorage.latitudMaps,localStorage.longitudMaps),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+                    
+    // Display a map on the web page
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    map.setTilt(50);
+        
+    // Multiple markers location, latitude, and longitude
+    var markers = JSON.parse(localStorage.localizadorProveedores);
+ 
+        
+    // Add multiple markers to map
+    var alvamex = {
+          url: 'img/alvamex.png', //ruta de la imagen
+          size: new google.maps.Size(60, 35), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(40, 60) 
+         };
+
+        var autosayer = {
+          url: 'img/autosayer.png', //ruta de la imagen
+          size: new google.maps.Size(60, 22), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+
+        var axalta = {
+          url: 'img/axalta.png', //ruta de la imagen
+          size: new google.maps.Size(40, 30), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(40, 60) 
+         };
+        var g3 = {
+          url: 'img/g3.png', //ruta de la imagen
+          size: new google.maps.Size(60, 27), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+
+        var ipesa = {
+          url: 'img/ipesa.png', //ruta de la imagen
+          size: new google.maps.Size(60, 22), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var max = {
+          url: 'img/max.png', //ruta de la imagen
+          size: new google.maps.Size(60, 29), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var ppg = {
+          url: 'img/ppg.png', //ruta de la imagen
+          size: new google.maps.Size(40,31), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var zhaia = {
+          url: 'img/zhaia.png', //ruta de la imagen
+          size: new google.maps.Size(60, 34), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+
+        var sfd = {
+          url: 'img/icono-sfd.png', //ruta de la imagen
+          size: new google.maps.Size(40, 60), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var swam = {
+          url: 'img/icono-sherwin-2.png', //ruta de la imagen
+          size: new google.maps.Size(40, 60), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var flex = {
+          url: 'img/flex.png', //ruta de la imagen
+          size: new google.maps.Size(60, 80), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var cliente = {
+          url: 'img/cliente2.png', //ruta de la imagen
+          size: new google.maps.Size(40, 60), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var cliente2 = {
+          url: 'img/cliente3.png', //ruta de la imagen
+          size: new google.maps.Size(40, 60), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+        var otros = {
+          url: 'img/paint2.png', //ruta de la imagen
+          size: new google.maps.Size(40, 60), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+
+         var miUbicacion = {
+          url: 'img/miUbicacion.png', //ruta de la imagen
+          size: new google.maps.Size(40, 60), //tamaño de la imagen
+          origin: new google.maps.Point(0,0), //origen de la iamgen
+        //el ancla de la imagen, el punto donde esta marcando, en nuestro caso el centro inferior.
+          anchor: new google.maps.Point(20, 60) 
+         };
+         
+         marker = new google.maps.Marker({
+            position: new google.maps.LatLng(localStorage.latitudMaps, localStorage.longitudMaps),
+            map: map,
+            title: "Tu Ubicacion",
+             icon : miUbicacion
+        });
+        
+        // Add info window to marker    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent("Mi ubicacion");
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+     
+         var infowindow = new google.maps.InfoWindow();
+         var marker, i;
+
+    for( i = 0; i < markers.length; i++ ) {
+  
+        var proveedor = markers[i]["proveedor"];
+
+            var prov = proveedor.search("SWAM");
+            var prov2 = proveedor.search("SAN");
+            var prov3 = proveedor.search("LIZBETH ATEMPAN");
+            var prov4 = proveedor.search("PATRICIA FRANCO ROSAS");
+
+            if (prov == 0 && prov3 == -1 && prov4 == -1) {
+
+              var imagen = swam;
+
+            }else if (prov2 == 0) {
+
+              var imagen = sfd;
+
+            }else if(prov == 0 && prov3 == 23 && prov4 == -1){
+
+              var imagen = flex;
+
+            }else if(prov == 0 && prov4 == 17 && prov3 == -1){
+
+              var imagen = flex;
+
+            }
+            else if (proveedor == "ALVAMEX") {
+
+              var imagen = alvamex;
+
+            }else if (proveedor == "AUTOSAYER") {
+
+              var imagen = autosayer;
+
+            }else if(proveedor == "AXALTA"){
+
+              var imagen = axalta;
+
+            }else if(proveedor == "G3"){
+
+              var imagen = g3;
+
+            }
+            else if(proveedor == "IPESA"){
+
+              var imagen = ipesa;
+
+            }else if(proveedor == "MAX"){
+
+              var imagen = max;
+
+            }
+            else if(proveedor == "PPG"){
+
+              var imagen = ppg;
+
+            }
+            else if(proveedor == "ZHAIA"){
+
+              var imagen = zhaia;
+
+            }else{
+
+              var imagen = cliente;
+
+            }
+
+        var position = new google.maps.LatLng(markers[i]["latitud"], markers[i]["longitud"]);
+       
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i]["proveedor"],
+             icon : imagen
+        });
+        
+        // Add info window to marker    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(markers[i]['proveedor']);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+
+      
+    }
+  
+    // Set zoom level
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(14);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}
+// Load initialize function
+google.maps.event.addDomListener(window, 'load', initMap);
+      </script>
+    
+    
+    </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/plantilla.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+
+
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+ 
+  </head>
+        
+    <title>BLITZ-ENCUESTA</title>
+  </head>
+  <body>
+    <div class="container col-lg-12" >
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 divCabecera">
+            <center><img src="img/logo-blanco.png" alt="" id="imgCabecera"></center>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12" id="contenedorInputs">
+       
+                <table class="tablaLista table">
+                    <thead>
+                        <tr>
+                            <th>Proveedor</th>
+                            <th>Direccion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo">
+                    </tbody>
+                  </table>
+            
+          </div>
+        </div>
+      </div>
+      
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script type="text/javascript" src="js/script.js"></script>
+      <script type="text/javascript" src="js/plantilla.js"></script>
+      <script type="text/javascript" src="js/acciones.js"></script>
+      <script type="text/javascript" src="js/auth.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+      <script src="js/bootstrap-tagsinput.min.js"></script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+      
+
+    
+        
+        <script type="text/javascript">
+   
+            $(document).ready(function(){
+          var json = localStorage.localizadorProveedores;
+                            
+          var types = JSON.parse(json);
+                            
+          $("#cuerpo").html("");
+          
+            for(x=0; x<types.length; x++) {
+                var edicion = "<button type='button' class='btn btn-success buttons' onclick='editarProveedor("+types[x].id+")'>Editar</button>";
+                var tr = `<tr>
+                <td style="width:30%;">
+                      <strong><label style="font-size: 14px;color:black;font-weight: bold;margin-top:-5px;">`+types[x].proveedor+`</label></strong>
+                      <span>`+edicion+`</span>
+                </td>
+                <td>
+                    <span type="text" style="font-size: 13px;color:grey;font: small-caps 100%/200% serif;" >`+types[x].direccion+`</span>
+                </td>       
+
+                                 
+              </tr>`;
+           
+                                    
+              $("#cuerpo").append(tr);
+            }
+                        
+                            
+        })
+        </script>
+       
+    </body>
+</html>

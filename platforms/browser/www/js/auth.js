@@ -710,4 +710,82 @@ $(document).ready(function () {
     var nombreSubcategoria = $(this).attr("nombreSubcategoria");
     localStorage.nombreSubcategoria = nombreSubcategoria;
   });
+  /**************************************************************** */
+  $("#verProveedoresCercanos").on("click", function () {
+    var latitud = localStorage.latitudMaps;
+    var longitud = localStorage.longitudMaps;
+    var dataString =
+      "latitud=" +
+      latitud +
+      "&longitud=" +
+      longitud +
+      "&localizacionProveedores=";
+    if (($.trim(latitud).length > 0) & ($.trim(longitud).length > 0)) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function () {
+          $("#verProveedoresCercanos").html("LOCALIZANDO...");
+        },
+        success: function (data) {
+          if (data != "fail") {
+            var json = data;
+
+            localStorage.localizadorProveedores = json;
+            window.location.href = "proveedoresCercanos.html";
+          } else if (data == "fail") {
+            swal("Algo Salio Mal", "Vuelve a intentarlo mas tarde", "error");
+            //alert("Error verifique su correo o contraseña");
+            $("#login").html("VER TIENDAS CERCANAS");
+          }
+        },
+      });
+    } else {
+      swal("Tu ubicacion no pudo ser obtenida...", "", "info");
+    }
+    return false;
+  });
+  /**************************************************************** */
+  $("#verProveedoresCercanosMapa").on("click", function () {
+    window.location.href = "localizador.html";
+  });
+  /**************************************************************** */
+  $("#registrarNuevo").on("click", function () {
+    window.location.href = "nuevo.html";
+  });
+  $("#registrarNuevo").on("click", function () {
+    window.location.href = "nuevo.html";
+  });
 });
+function editarProveedor(id) {
+  var dataString = "idProveedor=" + id + "&datosProveedor=";
+  if ($.trim(id).length > 0) {
+    $.ajax({
+      type: "POST",
+      url: "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?",
+      data: dataString,
+      crossDomain: true,
+      cache: false,
+      beforeSend: function () {},
+      success: function (data) {
+        if (data != "fail") {
+          var json = data;
+          alert(json);
+          //localStorage.setItem("idEdicion", id);
+
+          window.location.href = "editar.html";
+        } else if (data == "fail") {
+          swal("Algo Salio Mal", "Vuelve a intentarlo mas tarde", "error");
+
+          window.location.href = "proveedoresCercanos.html";
+        }
+      },
+    });
+  } else {
+    swal("La solicitud no pudo ser procesada...", "", "info");
+  }
+  return false;
+}
