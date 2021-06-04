@@ -75,9 +75,10 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Ow27ztKwFY0_CyX5FXXfK6PV87gJsPQ"></script>
 <script type="text/javascript">
+    history.forward();
     var geocoder;
     function initialize() {
-        history.forward();
+     
         geocoder = new google.maps.Geocoder();
         // Creating map object
         var map = new google.maps.Map(document.getElementById('map_canvas'), {

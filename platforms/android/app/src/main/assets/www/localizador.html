@@ -33,7 +33,7 @@
                       <button
                         type="button"
                         class="btn btn-success buttons "
-                        id="registrarNuevo"
+                        id="nuevoProveedor"
                       >
                         <strong style="color: white">NUEVO</strong>
                       </button>
@@ -61,7 +61,7 @@ function initMap() {
     var bounds = new google.maps.LatLngBounds();
     var mapOptions = {
         zoom: 12,
-      center: new google.maps.LatLng(localStorage.latitud,localStorage.longitud),
+      center: new google.maps.LatLng(localStorage.latitudMaps,localStorage.longitudMaps),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
                     
@@ -186,7 +186,7 @@ function initMap() {
          };
          
          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(localStorage.latitud, localStorage.longitud),
+            position: new google.maps.LatLng(localStorage.latitudMaps, localStorage.longitudMaps),
             map: map,
             title: "Tu Ubicacion",
              icon : miUbicacion

@@ -32,25 +32,25 @@
        
             <div class="col-lg-6 col-md-6 col-sm-6">
               <span><strong>*Nombre Tienda</strong></span>
-              <input type="text" class="form-control" id="tienda" name="tienda" placeholder="Ingresar Nombre">
+              <input type="text" class="form-control" id="editarTienda" name="tienda" placeholder="Ingresar Nombre">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <span><strong>Direccion</strong></span>
-                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion">
+                <input type="text" class="form-control" id="editarDireccion" name="direccion" placeholder="Direccion">
               </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <span><strong>Latitud:</strong></span>
-                <input class="form-control" id="latitud" placeholder="">
+                <input class="form-control" id="editarLatitud" placeholder="">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <span><strong>Longitud:</strong></span>
-                <input class="form-control" id="longitud" placeholder="">
+                <input class="form-control" id="editarLongitud" placeholder="">
             </div>
      
             <div id="map_canvas">
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6" style="margin-bottom: 30px;margin-top: 10px;">
-                <button type="button" class="btn btn-success buttons" id="registrarNuevo" name="registrarNuevo">Registrar</button>
+                <button type="button" class="btn btn-success buttons" id="actualizarProveedor" name="actualizarProveedor">Actualizar</button>
               </div>
           </div>
 
@@ -75,20 +75,28 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Ow27ztKwFY0_CyX5FXXfK6PV87gJsPQ"></script>
 <script type="text/javascript">
+    history.forward();
+    $(document).ready(function() {
+      $("#editarTienda").val(localStorage.editarProveedor);
+      $("#editarDireccion").val(localStorage.editarDireccion);
+      $("#editarLatitud").val(localStorage.editarLatitud);
+      $("#editarLongitud").val(localStorage.editarLongitud);
+    })
     var geocoder;
+
     function initialize() {
-        history.forward();
+      
         geocoder = new google.maps.Geocoder();
         // Creating map object
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
             zoom: 15,
-            center: new google.maps.LatLng(localStorage.latitud, localStorage.longitud),
+            center: new google.maps.LatLng(localStorage.editarLatitud, localStorage.editarLongitud),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         // creates a draggable marker to the given coords
         var vMarker = new google.maps.Marker({
-            position: new google.maps.LatLng(localStorage.latitud, localStorage.longitud),
+            position: new google.maps.LatLng(localStorage.editarLatitud, localStorage.editarLongitud),
             draggable: true
         });
 
@@ -96,8 +104,8 @@
         // gets the coords when drag event ends
         // then updates the input with the new coords
         google.maps.event.addListener(vMarker, 'dragend', function (evt) {
-            $("#latitud").val(evt.latLng.lat().toFixed(6));
-            $("#longitud").val(evt.latLng.lng().toFixed(6));
+            $("#editarLatitud").val(evt.latLng.lat().toFixed(6));
+            $("#editarLongitud").val(evt.latLng.lng().toFixed(6));
             codeLatLng(evt.latLng.lat().toFixed(6),evt.latLng.lng().toFixed(6));
             map.panTo(evt.latLng);
         });
@@ -117,7 +125,7 @@
             if (status == google.maps.GeocoderStatus.OK) {
             if (results[0]) {
             
-                $('#direccion').val(results[0].formatted_address);
+                $('#editarDireccion').val(results[0].formatted_address);
             
             } else {
                 alert('No results found');

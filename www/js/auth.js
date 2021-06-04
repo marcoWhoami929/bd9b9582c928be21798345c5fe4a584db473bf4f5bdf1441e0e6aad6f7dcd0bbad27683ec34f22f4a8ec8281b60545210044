@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  var url = "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?";
-  //var url = "https://sanfranciscodekkerlab.com/matriz/encuestaAuth.php?callback=?";
+  //var url = "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?";
+  var url =
+    "https://sanfranciscodekkerlab.com/matriz/encuestaAuth.php?callback=?";
 
   //Login Function
   $("#login").click(function () {
@@ -18,7 +19,7 @@ $(document).ready(function () {
           $("#login").html("Conectando...");
         },
         success: function (data) {
-          if (data != "fail") {
+          if (data != "failed") {
             localStorage.login = "true";
             localStorage.email = email;
             // Obteniendo todas las claves del JSON
@@ -38,7 +39,7 @@ $(document).ready(function () {
                 window.location.href = "index.html";
               }
             });
-          } else if (data == "fail") {
+          } else if (data == "failed") {
             swal("Algo Salio Mal", "verifique su correo o contraseña", "error");
             //alert("Error verifique su correo o contraseña");
             $("#login").html("Acceder");
@@ -242,7 +243,7 @@ $(document).ready(function () {
             cache: false,
             beforeSend: function () {},
             success: function (data) {
-              if (data != "fail") {
+              if (data != "failed") {
                 swal({
                   title: "Encuesta Finalizada",
                   text: "",
@@ -283,7 +284,7 @@ $(document).ready(function () {
                     window.location.href = "index.html";
                   }
                 });
-              } else if (data == "fail") {
+              } else if (data == "failed") {
                 swal("Algo Salio Mal", "No se pudo finalizar", "error");
               }
             },
@@ -308,7 +309,7 @@ $(document).ready(function () {
             cache: false,
             beforeSend: function () {},
             success: function (data) {
-              if (data != "fail") {
+              if (data != "failed") {
                 swal({
                   title: "Encuesta Finalizada",
                   text: "",
@@ -349,7 +350,7 @@ $(document).ready(function () {
                     window.location.href = "index.html";
                   }
                 });
-              } else if (data == "fail") {
+              } else if (data == "failed") {
                 swal("Algo Salio Mal", "No se pudo finalizar", "error");
               }
             },
@@ -374,7 +375,7 @@ $(document).ready(function () {
             cache: false,
             beforeSend: function () {},
             success: function (data) {
-              if (data != "fail") {
+              if (data != "failed") {
                 swal({
                   title: "Encuesta Finalizada",
                   text: "",
@@ -415,7 +416,7 @@ $(document).ready(function () {
                     window.location.href = "index.html";
                   }
                 });
-              } else if (data == "fail") {
+              } else if (data == "failed") {
                 swal("Algo Salio Mal", "No se pudo finalizar", "error");
               }
             },
@@ -731,12 +732,12 @@ $(document).ready(function () {
           $("#verProveedoresCercanos").html("LOCALIZANDO...");
         },
         success: function (data) {
-          if (data != "fail") {
+          if (data != "failed") {
             var json = data;
 
             localStorage.localizadorProveedores = json;
             window.location.href = "proveedoresCercanos.html";
-          } else if (data == "fail") {
+          } else if (data == "failed") {
             swal("Algo Salio Mal", "Vuelve a intentarlo mas tarde", "error");
             //alert("Error verifique su correo o contraseña");
             $("#login").html("VER TIENDAS CERCANAS");
@@ -753,31 +754,151 @@ $(document).ready(function () {
     window.location.href = "localizador.html";
   });
   /**************************************************************** */
-  $("#registrarNuevo").on("click", function () {
+  $("#nuevoProveedor").on("click", function () {
     window.location.href = "nuevo.html";
   });
+
+  $("#actualizarProveedor").on("click", function () {
+    var id = localStorage.editarId;
+    var tienda = $("#editarTienda").val();
+    var direccion = $("#editarDireccion").val();
+    var latitud = $("#editarLatitud").val();
+    var longitud = $("#editarLongitud").val();
+    var dataString =
+      "editarId=" +
+      id +
+      "&editarTienda=" +
+      tienda +
+      "&editarDireccion=" +
+      direccion +
+      "&editarLatitud=" +
+      latitud +
+      "&editarLongitud=" +
+      longitud +
+      "&actualizarDatosProveedor=";
+    if (
+      ($.trim(id).length > 0) &
+      ($.trim(tienda).length > 0) &
+      ($.trim(direccion).length > 0) &
+      ($.trim(latitud).length > 0) &
+      ($.trim(longitud).length > 0)
+    ) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function () {
+          $("#actualizarProveedor").html("Actualizando...");
+        },
+        success: function (data) {
+          if (data != "failed") {
+            swal({
+              title: "Exito",
+              text: "Datos actualizados correctamente",
+              icon: "success",
+              button: true,
+              dangerMode: false,
+            }).then((willDelete) => {
+              if (willDelete) {
+                localStorage.removeItem("editarId");
+                localStorage.removeItem("editarProveedor");
+                localStorage.removeItem("editarDireccion");
+                localStorage.removeItem("editarLatitud");
+                localStorage.removeItem("editarLongitud");
+                window.location.href = "index.html";
+              }
+            });
+          } else if (data == "failed") {
+            swal("Algo Salio Mal", "Vuelve a intentarlo mas tarde", "error");
+            //alert("Error verifique su correo o contraseña");
+            window.location.href = "proveedoresCercanos.html";
+          }
+        },
+      });
+    } else {
+      swal("Existen datos incompletos...", "", "info");
+    }
+    return false;
+  });
   $("#registrarNuevo").on("click", function () {
-    window.location.href = "nuevo.html";
+    var tienda = $("#tienda").val();
+    var direccion = $("#direccion").val();
+    var latitud = $("#latitud").val();
+    var longitud = $("#longitud").val();
+    var dataString =
+      "tienda=" +
+      tienda +
+      "&direccion=" +
+      direccion +
+      "&latitud=" +
+      latitud +
+      "&longitud=" +
+      longitud +
+      "&nuevoProveedor=";
+    if (
+      ($.trim(tienda).length > 0) &
+      ($.trim(direccion).length > 0) &
+      ($.trim(latitud).length > 0) &
+      ($.trim(longitud).length > 0)
+    ) {
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        beforeSend: function () {
+          $("#registrarNuevo").html("Guardando...");
+        },
+        success: function (data) {
+          if (data != "failed") {
+            swal({
+              title: "Exito",
+              text: "Registrado correctamente",
+              icon: "success",
+              button: true,
+              dangerMode: false,
+            }).then((willDelete) => {
+              if (willDelete) {
+                window.location.href = "index.html";
+              }
+            });
+          } else if (data == "failed") {
+            swal("Algo Salio Mal", "Vuelve a intentarlo mas tarde", "error");
+            //alert("Error verifique su correo o contraseña");
+            window.location.href = "proveedoresCercanos.html";
+          }
+        },
+      });
+    } else {
+      swal("Existen datos incompletos...", "", "info");
+    }
+    return false;
   });
 });
-function editarProveedor(id) {
+
+function obtenerDatosProveedor(id) {
   var dataString = "idProveedor=" + id + "&datosProveedor=";
   if ($.trim(id).length > 0) {
     $.ajax({
       type: "POST",
-      url: "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?",
+      url: "https://sanfranciscodekkerlab.com/matriz/encuestaAuth.php?callback=?",
       data: dataString,
       crossDomain: true,
       cache: false,
       beforeSend: function () {},
       success: function (data) {
-        if (data != "fail") {
-          var json = data;
-          alert(json);
-          //localStorage.setItem("idEdicion", id);
-
+        if (data != "failed") {
+          var json = JSON.parse(data);
+          localStorage.setItem("editarId", json[0]["id"]);
+          localStorage.setItem("editarProveedor", json[0]["proveedor"]);
+          localStorage.setItem("editarDireccion", json[0]["direccion"]);
+          localStorage.setItem("editarLatitud", json[0]["latitud"]);
+          localStorage.setItem("editarLongitud", json[0]["longitud"]);
           window.location.href = "editar.html";
-        } else if (data == "fail") {
+        } else if (data == "failed") {
           swal("Algo Salio Mal", "Vuelve a intentarlo mas tarde", "error");
 
           window.location.href = "proveedoresCercanos.html";

@@ -16,6 +16,8 @@ const funcionInit = () => {
       localStorage.setItem("latitud", coordenadas.latitude);
       localStorage.setItem("longitud", coordenadas.longitude);
     } else {
+      localStorage.setItem("latitud", coordenadas.latitude);
+      localStorage.setItem("longitud", coordenadas.longitude);
     }
     $latitud.innerText = coordenadas.latitude;
     $longitud.innerText = coordenadas.longitude;
@@ -40,15 +42,51 @@ const funcionInit = () => {
     opcionesDeSolicitud
   );
 };
+const funcionInitMaps = () => {
+  if (!"geolocation" in navigator) {
+    return alert(
+      "Tu navegador no soporta el acceso a la ubicación. Intenta con otro"
+    );
+  }
+
+  const onUbicacionConcedida = (ubicacion) => {
+    const coordenadas = ubicacion.coords;
+    var coordenada = localStorage.getItem("latitud");
+    if (coordenada === null) {
+      localStorage.setItem("latitudMaps", coordenadas.latitude);
+      localStorage.setItem("longitudMaps", coordenadas.longitude);
+    } else {
+      localStorage.setItem("latitudMaps", coordenadas.latitude);
+      localStorage.setItem("longitudMaps", coordenadas.longitude);
+    }
+  };
+  const onErrorDeUbicacion = (err) => {
+    $latitud.innerText = "Error obteniendo ubicación: " + err.message;
+    $longitud.innerText = "Error obteniendo ubicación: " + err.message;
+    console.log("Error obteniendo ubicación: ", err);
+  };
+
+  const opcionesDeSolicitud = {
+    enableHighAccuracy: true, // Alta precisión
+    maximumAge: 0, // No queremos caché
+    timeout: 5000, // Esperar solo 5 segundos
+  };
+
+  navigator.geolocation.getCurrentPosition(
+    onUbicacionConcedida,
+    onErrorDeUbicacion,
+    opcionesDeSolicitud
+  );
+};
 //document.addEventListener("DOMContentLoaded", funcionInit);
 $("#guardarUbicacion").click(function () {
   funcionInit();
 });
 $("#verProveedoresCercanos").click(function () {
-  funcionInit();
+  funcionInitMaps();
 });
 $("#verProveedoresCercanosMapa").click(function () {
-  funcionInit();
+  funcionInitMaps();
 });
 function pagoOnChange(sel) {
   if (sel.value == "CREDITO") {

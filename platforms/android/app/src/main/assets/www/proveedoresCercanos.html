@@ -69,7 +69,7 @@
           $("#cuerpo").html("");
           
             for(x=0; x<types.length; x++) {
-                var edicion = "<button type='button' class='btn btn-success buttons' onclick='editarProveedor()' id='`+types[x].proveedor+`'>Editar</button>";
+                var edicion = "<button type='button' class='btn btn-success buttons' onclick='obtenerDatosProveedor("+types[x].id+")'>Editar</button>";
                 var tr = `<tr>
                 <td style="width:30%;">
                       <strong><label style="font-size: 14px;color:black;font-weight: bold;margin-top:-5px;">`+types[x].proveedor+`</label></strong>

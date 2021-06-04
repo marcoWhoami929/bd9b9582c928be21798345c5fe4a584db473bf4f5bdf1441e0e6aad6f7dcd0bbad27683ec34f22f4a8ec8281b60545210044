@@ -75,20 +75,21 @@
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7Ow27ztKwFY0_CyX5FXXfK6PV87gJsPQ"></script>
 <script type="text/javascript">
+    history.forward();
     var geocoder;
     function initialize() {
-        history.forward();
+     
         geocoder = new google.maps.Geocoder();
         // Creating map object
         var map = new google.maps.Map(document.getElementById('map_canvas'), {
             zoom: 15,
-            center: new google.maps.LatLng(localStorage.latitud, localStorage.longitud),
+            center: new google.maps.LatLng(localStorage.latitudMaps, localStorage.longitudMaps),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         // creates a draggable marker to the given coords
         var vMarker = new google.maps.Marker({
-            position: new google.maps.LatLng(localStorage.latitud, localStorage.longitud),
+            position: new google.maps.LatLng(localStorage.latitudMaps, localStorage.longitudMaps),
             draggable: true
         });
 
