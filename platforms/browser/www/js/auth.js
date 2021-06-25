@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  var url = "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?";
-  //var url = "https://sanfranciscodekkerlab.com/matriz/encuestaAuth.php?callback=?";
+  //var url = "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?";
+  var url =
+    "https://sanfranciscodekkerlab.com/matriz/encuestaAuth.php?callback=?";
 
   //Login Function
   $("#login").click(function () {
@@ -826,6 +827,7 @@ $(document).ready(function () {
     var direccion = $("#direccion").val();
     var latitud = $("#latitud").val();
     var longitud = $("#longitud").val();
+    var idCliente = localStorage.idCliente;
     var dataString =
       "tienda=" +
       tienda +
@@ -835,6 +837,8 @@ $(document).ready(function () {
       latitud +
       "&longitud=" +
       longitud +
+      "&idAgente=" +
+      idCliente +
       "&nuevoProveedor=";
     if (
       ($.trim(tienda).length > 0) &
@@ -883,7 +887,7 @@ function obtenerDatosProveedor(id) {
   if ($.trim(id).length > 0) {
     $.ajax({
       type: "POST",
-      url: "http://localhost/DEKKERADMIN/encuestaAuth.php?callback=?",
+      url: "https://sanfranciscodekkerlab.com/matriz/encuestaAuth.php?callback=?",
       data: dataString,
       crossDomain: true,
       cache: false,

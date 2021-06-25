@@ -827,6 +827,7 @@ $(document).ready(function () {
     var direccion = $("#direccion").val();
     var latitud = $("#latitud").val();
     var longitud = $("#longitud").val();
+    var idCliente = localStorage.idCliente;
     var dataString =
       "tienda=" +
       tienda +
@@ -836,6 +837,8 @@ $(document).ready(function () {
       latitud +
       "&longitud=" +
       longitud +
+      "&idAgente=" +
+      idCliente +
       "&nuevoProveedor=";
     if (
       ($.trim(tienda).length > 0) &
